@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopEase</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Billing Form -->
+  <section class="products" style="max-width: 600px; margin: auto;">
+    <h2>Billing Information</h2>
+    <form id="billing-form">
+      <label>Full Name:</label>
+      <input type="text" name="name" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">
+
+      <label>Email:</label>
+      <input type="email" name="email" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">
+
+      <label>Address:</label>
+      <textarea name="address" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"></textarea>
+
+      <label>Payment Method:</label>
+      <select name="payment" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">
+        <option value="credit">Credit Card</option>
+        <option value="debit">Debit Card</option>
+        <option value="cod">Cash on Delivery</option>
+      </select>
+
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>Contact us: support@shopease.com | +123 456 7890</p>
+    <p>&copy; 2025 ShopEase. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('billing-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('cart');
+      alert('Order placed successfully! Thank you for shopping with us.');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+
+</html>
