@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopEase</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Product Detail Section -->
+  <section class="products" style="text-align: left; max-width: 900px; margin: auto;">
+    <h2>Product Name</h2>
+    <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+      <img src="https://via.placeholder.com/300" alt="Product Image" style="border-radius: 8px; max-width: 100%;">
+      <div>
+        <h3>$29.99</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
+        <button class="btn" onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>Contact us: support@shopease.com | +123 456 7890</p>
+    <p>&copy; 2025 ShopEase. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function addToCart() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const product = {
+        id: 1,
+        name: 'Product Name',
+        price: 29.99,
+        quantity: 1
+      };
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Product added to cart!');
+    }
+  </script>
+</body>
+
+</html>
