@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">ShopEase</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Cart Section -->
+  <section class="products" style="max-width: 900px; margin: auto;">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3 id="total-price">Total: $0.00</h3>
+    <a href="billing.html" class="btn">Proceed to Billing</a>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>Contact us: support@shopease.com | +123 456 7890</p>
+    <p>&copy; 2025 ShopEase. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function displayCart() {
+      const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartDiv = document.getElementById('cart-items');
+      const totalPriceEl = document.getElementById('total-price');
+      cartDiv.innerHTML = '';
+
+      if (cartItems.length === 0) {
+        cartDiv.innerHTML = '<p>Your cart is empty.</p>';
+        totalPriceEl.textContent = 'Total: $0.00';
+        return;
+      }
+
+      let total = 0;
+
+      cartItems.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.style.marginBottom = '1rem';
+        itemDiv.innerHTML = `
+          <p><strong>${item.name}</strong> - $${item.price} x ${item.quantity}</p>
+          <button onclick="removeItem(${index})" class="btn" style="background-color: red; color: white;">Remove</button>
+        `;
+        cartDiv.appendChild(itemDiv);
+        total += item.price * item.quantity;
+      });
+
+      totalPriceEl.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      displayCart();
+    }
+
+    window.onload = displayCart;
+  </script>
+</body>
+
+</html>
